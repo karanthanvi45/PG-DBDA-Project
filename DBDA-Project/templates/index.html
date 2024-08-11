@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Marketing Model Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fpngtree.com%2Ffree-backgrounds-photos%2Fui&psig=AOvVaw1ELCv1rd7NFIcZ7Qq53y_c&ust=1723310674636000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCNj41eW26IcDFQAAAAAdAAAAABAb');
+            background-color: #f0f4f7;
+            text-align: center;
+            padding: 20px;
+            color: #333;
+        }
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            max-width: 500px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, select {
+            padding: 8px;
+            width: 100%;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        h1 {
+            color: #333;
+        }
+        h2 {
+            color: #4CAF50;
+        }
+        img {
+            width: 150px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .tabs {
+            margin: 20px 0;
+        }
+        .tab {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .tab:hover, .tab.active {
+            background-color: #45a049;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        iframe {
+            border: none;
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <img src="https://www.shutterstock.com/image-vector/finance-logo-icon-business-design-trading-2327415895.jpg" alt="Bank Logo">
+    <h1>Bank Marketing Model Prediction</h1>
+
+    <div class="tabs">
+        <div class="tab {% if tab == 'visualization' %}active{% endif %}" onclick="showTab('visualization')">View Data Visualization</div>
+    </div>
+
+    <div id="predict" class="tab-content {% if tab == 'predict' %}active{% endif %}">
+        <form action="/predict" method="post">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+
+            <label for="job">Job:</label>
+            <select id="job" name="job" required>
+                <option value="0">Admin</option>
+                <option value="1">Blue-Collar</option>
+                <option value="2">Entrepreneur</option>
+                <option value="3">Housemaid</option>
+                <option value="4">Management</option>
+                <option value="5">Retired</option>
+                <option value="6">Self-Employed</option>
+                <option value="7">Services</option>
+                <option value="8">Student</option>
+                <option value="9">Technician</option>
+                <option value="10">Unemployed</option>
+                <option value="11">Unknown</option>
+            </select>
+
+            <label for="marital">Marital Status:</label>
+            <select id="marital" name="marital" required>
+                <option value="0">Married</option>
+                <option value="1">Single</option>
+                <option value="2">Divorced</option>
+                <option value="3">Unknown</option>
+            </select>
+
+            <label for="education">Education:</label>
+            <select id="education" name="education" required>
+                <option value="0">Basic 4y</option>
+                <option value="1">Basic 6y</option>
+                <option value="2">Basic 9y</option>
+                <option value="3">High school</option>
+                <option value="4">Illiterate</option>
+                <option value="5">Professional course</option>
+                <option value="6">University degree</option>
+                <option value="7">Unknown</option>
+            </select>
+
+            <label for="default">Default:</label>
+            <select id="default" name="default" required>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+                <option value="2">Unknown</option>
+            </select>
+
+            <label for="housing">Housing Loan:</label>
+            <select id="housing" name="housing" required>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+                <option value="2">Unknown</option>
+            </select>
+
+            <label for="loan">Personal Loan:</label>
+            <select id="loan" name="loan" required>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+                <option value="2">Unknown</option>
+            </select>
+
+            <label for="contact">Contact Communication Type:</label>
+            <select id="contact" name="contact" required>
+                <option value="0">Cellular</option>
+                <option value="1">Telephone</option>
+            </select>
+
+            <label for="month">Last Contact Month:</label>
+            <select id="month" name="month" required>
+                <option value="0">January</option>
+                <option value="1">February</option>
+                <option value="2">March</option>
+                <option value="3">April</option>
+                <option value="4">May</option>
+                <option value="5">June</option>
+                <option value="6">July</option>
+                <option value="7">August</option>
+                <option value="8">September</option>
+                <option value="9">October</option>
+                <option value="10">November</option>
+                <option value="11">December</option>
+            </select>
+
+            <label for="day_of_week">Last Contact Day of the Week:</label>
+            <select id="day_of_week" name="day_of_week" required>
+                <option value="0">Monday</option>
+                <option value="1">Tuesday</option>
+                <option value="2">Wednesday</option>
+                <option value="3">Thursday</option>
+                <option value="4">Friday</option>
+            </select>
+
+            <label for="poutcome">Previous Outcome:</label>
+            <select id="poutcome" name="poutcome" required>
+                <option value="0">Failure</option>
+                <option value="1">Nonexistent</option>
+                <option value="2">Success</option>
+            </select>
+
+            <label for="campaign">Number of Contacts During this Campaign:</label>
+            <input type="number" id="campaign" name="campaign" required>
+
+            <label for="pdays">Number of Days Since the Client was Last Contacted:</label>
+            <input type="number" id="pdays" name="pdays" required>
+
+            <label for="previous">Number of Contacts Before this Campaign:</label>
+            <input type="number" id="previous" name="previous" required>
+
+            <label for="emp_var_rate">Employment Variation Rate:</label>
+            <input type="text" id="emp_var_rate" name="emp_var_rate" required>
+
+            <label for="cons_price_idx">Consumer Price Index:</label>
+            <input type="text" id="cons_price_idx" name="cons_price_idx" required>
+
+            <label for="cons_conf_idx">Consumer Confidence Index:</label>
+            <input type="text" id="cons_conf_idx" name="cons_conf_idx" required>
+
+            <label for="euribor3m">Euribor 3 Month Rate:</label>
+            <input type="text" id="euribor3m" name="euribor3m" required>
+
+            <label for="nr_employed">Number of Employees:</label>
+            <input type="text" id="nr_employed" name="nr_employed" required>
+
+            <input type="submit" value="Predict">
+        </form>
+        {% if prediction_text %}
+        <h2>{{ prediction_text }}</h2>
+        {% endif %}
+    </div>
+
+    <div id="visualization" class="tab-content {% if tab == 'visualization' %}active{% endif %}">
+        <p><a href="https://public.tableau.com/views/BankMarketingCampaignAnalysis_17232227373120/Age-Job?:embed=y&:display_count=yes" target="_blank">View Tableau Visualization</a></p>
+    </div>
+
+    <script>
+        function showTab(tab) {
+            window.location.href = `/${tab}`;
+        }
+    </script>
+</body>
+</html>
+
